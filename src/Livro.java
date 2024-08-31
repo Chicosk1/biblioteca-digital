@@ -12,10 +12,6 @@ public class Livro {
         this.livroDisponivel = livroDisponivel;
     }
 
-    public Livro(String string, Autor autor1, String string2) {
-        //TODO Auto-generated constructor stub
-    }
-
     //Getters
     public Autor getAutorLivro() {
         return autorLivro;
@@ -25,7 +21,7 @@ public class Livro {
         return tituloLivro;
     }
 
-    //Métodos
+    //Método para emprestar o livro se estiver disponível
     public boolean emprestarLivro() {
         if (livroDisponivel == true) {
             return true;
@@ -34,10 +30,12 @@ public class Livro {
         }
     }
 
+    //Método para devolver o livro
     public void devolverLivro() {
         livroDisponivel = true;
     }
 
+    //Método para verificar a disponibilidade do livro
     public boolean verificarDisponibilidade() {
         return livroDisponivel;
     }
