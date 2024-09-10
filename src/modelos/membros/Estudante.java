@@ -1,3 +1,4 @@
+package modelos.membros;
 public class Estudante extends Membro {
     // Váriaveis Iniciais
     private String cursoEstudante;

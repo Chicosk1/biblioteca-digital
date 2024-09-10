@@ -1,5 +1,8 @@
+package modelos.membros;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelos.Livro;
 
 public class Membro {
     // Váriaveis Iniciais
