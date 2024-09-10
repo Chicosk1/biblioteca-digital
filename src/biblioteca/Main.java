@@ -48,8 +48,8 @@ public class Main {
             switch (opcao) {
                 case 1:
                     System.out.println("Qual membro está emprestando o livro?");
-                    System.out.println("1. João (Estudante)");
-                    System.out.println("2. Maria (Professor)");
+                    System.out.println("1. " + estudante + " (Estudante)");
+                    System.out.println("2. " + professor + " (Professor)");
                     int membroEscolha = scanner.nextInt();
                     scanner.nextLine();
                     Membro membroEmprestimo = membroEscolha == 1 ? estudante : professor;
