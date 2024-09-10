@@ -1,19 +1,15 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class Autor {
-    // Variáveis Iniciais
-    private String nomeAutor, nacionalidadeAutor, dataNascimentoAutor;
-    private List<Livro> livros;
+    // Váriaveis Iniciais
+    private String nomeAutor, nacionalidadeAutor;
+    private Date dataNascimentoAutor;
 
     // Construtor
-    public Autor(String nomeAutor, String nacionalidadeAutor, String dataNascimentoAutor) {
+    public Autor(String nomeAutor, String nacionalidadeAutor, Date dataNascimentoAutor) {
         this.nomeAutor = nomeAutor;
         this.nacionalidadeAutor = nacionalidadeAutor;
         this.dataNascimentoAutor = dataNascimentoAutor;
-        this.livros = new ArrayList<>();
     }
 
     // Getter
@@ -21,27 +17,11 @@ public class Autor {
         return nomeAutor;
     }
 
-    // Método para formatar a data de nascimento
-    public static String formatarDataNascimento(int dia, int mes, int ano) {
-        LocalDate data = LocalDate.of(ano, mes, dia);
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return data.format(formatador);
+    public String getNacionalidadeAutor() {
+        return nacionalidadeAutor;
     }
 
-    // Método para adicionar um livro à lista de livros do autor
-    public void adicionarLivro(Livro livro) {
-        livros.add(livro);
-    }
-
-    // Método para listar os livros do autor
-    public void listarLivros() {
-        if (livros.isEmpty()) {
-            System.out.println("Nenhum livro encontrado para o autor " + nomeAutor);
-        }else{
-            System.out.println("Livros do autor " + nomeAutor + ":");
-            for (Livro livro : livros) {
-                System.out.println("- " + livro.getTituloLivro());
-            }
-        }
+    public Date getDataNascimentoAutor() {
+        return dataNascimentoAutor;
     }
 }
