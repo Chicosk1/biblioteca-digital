@@ -1,6 +1,7 @@
 package modelos;
+
 public class Livro {
-    // Váriaveis Iniciais
+
     private String  tituloLivro, isbnLivro;
     private Autor autorLivro;
     private boolean livroDisponivel;

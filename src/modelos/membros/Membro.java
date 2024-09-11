@@ -1,11 +1,12 @@
 package modelos.membros;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import modelos.Livro;
+import modelos.*;
 
 public class Membro {
-    // Váriaveis Iniciais
+
     private String nomeMembro;
     private int idMembro;
     private List<Livro> historicoEmprestimoMembro;

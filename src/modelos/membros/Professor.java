@@ -1,6 +1,7 @@
 package modelos.membros;
+
 public class Professor extends Membro{
-    // Váriaveis Iniciais
+
     private String departamentoProfessor;
     
     // Construtor
