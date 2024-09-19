@@ -64,6 +64,8 @@ public class Main {
                     String isbnEmprestimo = scanner.nextLine();
                     Livro livroEmprestimo = buscarLivroPorISBN(livros, isbnEmprestimo);
 
+                    delay();
+
                     // Validação para verificar se o livro já foi emprestado ou não
                     if (livroEmprestimo != null) {
                         if(!livroEmprestimo.islivroEmprestado()){
@@ -95,6 +97,8 @@ public class Main {
                     String isbnDevolucao = scanner.nextLine();
                     Livro livroDevolucao = buscarLivroPorISBN(livros, isbnDevolucao);
 
+                    delay();
+                    
                     // Validação para verificar se o livro já foi devolvido ou não
                     if (livroDevolucao.islivroEmprestado()) {
                         membroDevolucao.registrarDevolucao(livroDevolucao);
@@ -112,24 +116,25 @@ public class Main {
                     System.out.println("2. " + autor2.getNomeAutor());
                     int nomeAutorListar = scanner.nextInt();
                     scanner.nextLine();
-                    if (nomeAutorListar != 1 && nomeAutorListar != 2) {
-                        System.out.println("Escolha inválida. Tente novamente.");
-                        break;
-                    }else{
-                        //Valida a escolha de Autores, se for escolhido um numero invalido o sistema sera reiniciado.
-                    Autor autorListarEscolhido  =  nomeAutorListar == 1 ? autor1 : autor2;
 
+                    delay();
+
+                    if (nomeAutorListar != 1 && nomeAutorListar != 2) {
+
+                        System.out.println("Escolha inválida. Tente novamente.");
+
+                        break;
+
+                    }else{
+
+                    //Valida a escolha de Autores, se for escolhido um numero invalido o sistema sera reiniciado.
+                    Autor autorListarEscolhido  =  nomeAutorListar == 1 ? autor1 : autor2;
                     
                     // Procurando os livros que um autor possui
                     biblioteca.listarLivrosDoAutor(autorListarEscolhido.getNomeAutor());
+
                     }
-                    for(int i = 1; i >= 1;i--){
-                        try {
-                            Thread.sleep(1000);
-                        } catch (Exception e) {
-                            System.out.println("Erro");
-                        }
-                    }//Delay para facilitar o entendimento do print
+
                     break;
 
                 case 4:
@@ -144,6 +149,8 @@ public class Main {
                     Membro membroHistorico = membroHistoricoEscolha == 1 ? estudante : professor;
 
                     List<Livro> historico = membroHistorico.getHistoricoEmprestimoMembro();
+                    
+                    delay();
 
                     // Validação para verificar se houve emprestimos ou não
                     if (historico.isEmpty()) {
@@ -179,6 +186,8 @@ public class Main {
                     System.out.println("Digite o ISBN do livro:");
                     String isbn = scanner.nextLine();
                     
+                    delay();
+
                     // Validação para verificar se já existe o livro escolhido
                     if (!biblioteca.livroExiste(isbn,titulo)) {
 
@@ -219,5 +228,15 @@ public class Main {
             }
         }
         return null;
+    }
+
+    public static void delay(){
+        for(int i = 1; i >= 1;i--){
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                System.out.println("Erro");
+            }
+        }
     }
 }
