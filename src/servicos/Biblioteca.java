@@ -8,7 +8,7 @@ public class Biblioteca {
     
     private List<Livro> livros;
 
-    // Construtor
+    // Setters
     public Biblioteca(List<Livro> livros) {
         this.livros = livros;
     }
