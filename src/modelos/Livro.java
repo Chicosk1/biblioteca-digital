@@ -5,6 +5,7 @@ public class Livro {
     private String  tituloLivro, isbnLivro;
     private Autor autorLivro;
     private boolean livroEmprestado = false;
+    
     // Construtor
     public Livro(String tituloLivro, Autor autorLivro, String isbnLivro) {
         this.tituloLivro = tituloLivro;
