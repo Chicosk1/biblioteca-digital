@@ -32,10 +32,12 @@ public class Livro {
         return livroEmprestado;
     }
 
+    // Setters
     public void setEmprestado(boolean livroEmprestado) {
         this.livroEmprestado = livroEmprestado;
     }
-    // Método para emprestar o livro se estiver disponível
+    
+    // Métodos
     public void emprestarLivro() {
         livroEmprestado = false;
         if (!livroEmprestado) {
@@ -46,7 +48,6 @@ public class Livro {
         }
     }
 
-    // Método para devolver o livro
     public void devolverLivro() {
         if (livroEmprestado){
             livroEmprestado = false;
@@ -56,7 +57,6 @@ public class Livro {
         }
     }
 
-    // Método para verificar a disponibilidade do livro
     public void verificarDisponibilidade() {
         if (livroEmprestado == true) {
             System.out.println("Livro emprestado");
