@@ -31,7 +31,7 @@ public class Membro {
         return idMembro;
     }
 
-    // Método para registrar um emprestimo de livro realizado por um Membro
+    // Método
     public void registrarEmprestimo(Livro livro) {
         if (livro.islivroEmprestado() == false) {
             historicoEmprestimoMembro.add(livro);
@@ -42,7 +42,6 @@ public class Membro {
 
     }
 
-    // Método para registar a devolução de um livro realizado por um Membro
     public void registrarDevolucao(Livro livro) {
         livro.devolverLivro();
         historicoEmprestimoMembro.remove(livro);
