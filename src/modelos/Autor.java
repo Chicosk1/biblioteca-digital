@@ -18,7 +18,7 @@ public class Autor {
         this.livros = new ArrayList<>();
     }
 
-    // Getter
+    // Getters
     public String getNomeAutor() {
         return nomeAutor;
     }
@@ -35,7 +35,7 @@ public class Autor {
         return livros;
     }
 
-    // Método para adicionar livro a um autor específico
+    // Método
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
     }
