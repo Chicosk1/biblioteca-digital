@@ -11,27 +11,24 @@ import servicos.*;
 
 public class Main {
     public static void main(String[] args) {
+        
         Scanner scanner = new Scanner(System.in);
 
-        // Criando autores
+        // Alimentando os Construtores de cada Classe
         Autor autor1 = new Autor("J.K. Rowling", "Britânico", new Date());
         Autor autor2 = new Autor("George Orwell", "Britânico", new Date());
         
-        // Criando livros
         Livro livro1 = new Livro("Harry Potter", autor1, "123456");
         Livro livro2 = new Livro("1984", autor2, "654321");
 
-        // Criando membros
         Membro estudante = new Estudante("Gabriel", 1, "Sistemas de Informação");
         Membro professor = new Professor("Josimar", 2, "Desenvolvimento de Aplicações");
-        
-        // Criando lista de livros
+
+        // Instanciando objetos
         List<Livro> livros = new ArrayList<>();
+        Biblioteca biblioteca = new Biblioteca(livros);
         livros.add(livro1);
         livros.add(livro2);
-
-        // Criando a biblioteca
-        Biblioteca biblioteca = new Biblioteca(livros);
 
         boolean sair = false;
         while (!sair) {
@@ -48,6 +45,7 @@ public class Main {
 
             // Switch case das opções disponíveis
             switch (opcao) {
+                // Emprestar Livro
                 case 1:
 
                     System.out.println("Qual membro está emprestando o livro?");
@@ -56,12 +54,12 @@ public class Main {
                     int membroEscolha = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Operador Ternário: condição ? valor verdadeiro : valor falso
+                    // Operador Ternário = condição ? valor verdadeiro : valor falso
                     Membro membroEmprestimo = membroEscolha == 1 ? estudante : professor;
                     
-                    // Procurando o livro pelo código ISBN
                     System.out.println("Digite o ISBN do livro a ser emprestado:");
                     String isbnEmprestimo = scanner.nextLine();
+                    
                     Livro livroEmprestimo = buscarLivroPorISBN(livros, isbnEmprestimo);
 
                     delay();
@@ -69,9 +67,12 @@ public class Main {
                     // Validação para verificar se o livro já foi emprestado ou não
                     if (livroEmprestimo != null) {
                         if(!livroEmprestimo.islivroEmprestado()){
+                            
                             membroEmprestimo.registrarEmprestimo(livroEmprestimo);
                             livroEmprestimo.emprestarLivro();
+                            
                             System.out.println(livroEmprestimo.getTituloLivro() + " foi emprestado com sucesso!");
+                            
                         }else{
                             System.out.println("O livro ja foi emprestado");
                         }            
@@ -80,7 +81,7 @@ public class Main {
                     }
 
                     break;
-
+                // Devolver Livro
                 case 2:
 
                     System.out.println("Qual membro está devolvendo o livro?");
@@ -89,26 +90,28 @@ public class Main {
                     int membroDevolucaoEscolha = scanner.nextInt();
                     scanner.nextLine();
                     
-                    // Operador Ternário: condição ? valor verdadeiro : valor falso
                     Membro membroDevolucao = membroDevolucaoEscolha == 1 ? estudante : professor;
                     
-                    // Procurando o livro pelo código ISBN
                     System.out.println("Digite o ISBN do livro a ser devolvido:");
                     String isbnDevolucao = scanner.nextLine();
+                    
                     Livro livroDevolucao = buscarLivroPorISBN(livros, isbnDevolucao);
 
                     delay();
                     
                     // Validação para verificar se o livro já foi devolvido ou não
                     if (livroDevolucao.islivroEmprestado()) {
+                        
                         membroDevolucao.registrarDevolucao(livroDevolucao);
+                        
                         System.out.println(livroDevolucao.getTituloLivro() + " foi devolvido com sucesso!");
+                        
                     } else {
                         System.out.println("Livro não encontrado.");
                     }
 
                     break;
-
+                // Listar Livros do Autor
                 case 3:
                     
                     System.out.println("Escolha o autor:");
@@ -127,16 +130,14 @@ public class Main {
 
                     }else{
 
-                    //Valida a escolha de Autores, se for escolhido um numero invalido o sistema sera reiniciado.
                     Autor autorListarEscolhido  =  nomeAutorListar == 1 ? autor1 : autor2;
                     
-                    // Procurando os livros que um autor possui
                     biblioteca.listarLivrosDoAutor(autorListarEscolhido.getNomeAutor());
 
                     }
 
                     break;
-
+                // Ver Histórico de Emprestimos
                 case 4:
 
                     System.out.println("Qual membro deseja ver o histórico de empréstimos?");
@@ -145,7 +146,6 @@ public class Main {
                     int membroHistoricoEscolha = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Operador Ternário: condição ? valor verdadeiro : valor falso
                     Membro membroHistorico = membroHistoricoEscolha == 1 ? estudante : professor;
 
                     List<Livro> historico = membroHistorico.getHistoricoEmprestimoMembro();
@@ -168,7 +168,7 @@ public class Main {
                     }
 
                     break;
-
+                // Adicionar Livros a um Autor
                 case 5:
 
                     System.out.println("Escolha o autor:");
@@ -177,7 +177,6 @@ public class Main {
                     int autorEscolha = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Operador Ternário: condição ? valor verdadeiro : valor falso
                     Autor autorEscolhido = autorEscolha == 1 ? autor1 : autor2;
 
                     System.out.println("Digite o título do livro:");
@@ -191,10 +190,11 @@ public class Main {
                     // Validação para verificar se já existe o livro escolhido
                     if (!biblioteca.livroExiste(isbn,titulo)) {
 
-                        // Adicionando livro ao autor
                         Livro novoLivro = new Livro(titulo, autorEscolhido, isbn);
+                        
                         autorEscolhido.adicionarLivro(novoLivro); 
                         livros.add(novoLivro); 
+                        
                         System.out.println("Livro adicionado com sucesso ao autor " + autorEscolhido.getNomeAutor());
                     
                     }else{
@@ -204,7 +204,7 @@ public class Main {
                     }
 
                     break;
-
+                // Sair
                 case 6:
 
                     sair = true;
@@ -221,6 +221,7 @@ public class Main {
         scanner.close();
     }
 
+    // Métodos
     public static Livro buscarLivroPorISBN(List<Livro> livros, String isbn) {
         for (Livro livro : livros) {
             if (livro.getIsbnLivro().equals(isbn)) {
