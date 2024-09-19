@@ -37,8 +37,9 @@ public class Livro {
     // Método para emprestar o livro se estiver disponível
     public void emprestarLivro() {
         livroEmprestado = false;
-        if (livroEmprestado == false) {
+        if (!livroEmprestado) {
             livroEmprestado = true;
+            System.out.println("Livro emprestado com sucesso!");
         }else{
             System.out.println("Livro indisponível.");
         }
@@ -46,7 +47,7 @@ public class Livro {
 
     // Método para devolver o livro
     public void devolverLivro() {
-        if (livroEmprestado == true){
+        if (livroEmprestado){
             livroEmprestado = false;
             System.out.println("Livro Devolvido com Sucesso.");
         }else{

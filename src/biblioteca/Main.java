@@ -66,10 +66,10 @@ public class Main {
 
                     // Validação para verificar se o livro já foi emprestado ou não
                     if (livroEmprestimo != null) {
-                        if(livroEmprestimo.islivroEmprestado() == false){
+                        if(!livroEmprestimo.islivroEmprestado()){
                             membroEmprestimo.registrarEmprestimo(livroEmprestimo);
                             livroEmprestimo.emprestarLivro();
-                            System.out.println(livroEmprestimo + " foi emprestado com sucesso!");
+                            System.out.println(livroEmprestimo.getTituloLivro() + " foi emprestado com sucesso!");
                         }else{
                             System.out.println("O livro ja foi emprestado");
                         }            
@@ -96,9 +96,9 @@ public class Main {
                     Livro livroDevolucao = buscarLivroPorISBN(livros, isbnDevolucao);
 
                     // Validação para verificar se o livro já foi devolvido ou não
-                    if (livroDevolucao != null) {
+                    if (livroDevolucao.islivroEmprestado()) {
                         membroDevolucao.registrarDevolucao(livroDevolucao);
-                        System.out.println(livroDevolucao + " foi devolvido com sucesso!");
+                        System.out.println(livroDevolucao.getTituloLivro() + " foi devolvido com sucesso!");
                     } else {
                         System.out.println("Livro não encontrado.");
                     }
