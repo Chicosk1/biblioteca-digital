@@ -33,7 +33,7 @@ public class Membro {
 
     // Método para registrar um emprestimo de livro realizado por um Membro
     public void registrarEmprestimo(Livro livro) {
-        if (livro.isLivroDisponivel()) {
+        if (livro.islivroEmprestado() == false) {
             historicoEmprestimoMembro.add(livro);
             livro.emprestarLivro();
         }else{

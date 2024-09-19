@@ -4,14 +4,13 @@ public class Livro {
 
     private String  tituloLivro, isbnLivro;
     private Autor autorLivro;
-    private boolean livroDisponivel;
-
+    private boolean livroEmprestado = false;
     // Construtor
     public Livro(String tituloLivro, Autor autorLivro, String isbnLivro) {
         this.tituloLivro = tituloLivro;
         this.autorLivro = autorLivro;
         this.isbnLivro = isbnLivro;
-        this.livroDisponivel = true;
+        this.livroEmprestado = false;
     }
 
     // Getters
@@ -26,16 +25,20 @@ public class Livro {
     public String getIsbnLivro() {
         return isbnLivro;
     }
-
-    public boolean isLivroDisponivel() {
-        return livroDisponivel;
+    
+    
+    public boolean islivroEmprestado() {
+        return livroEmprestado;
     }
 
+    public void setEmprestado(boolean livroEmprestado) {
+        this.livroEmprestado = livroEmprestado;
+    }
     // Método para emprestar o livro se estiver disponível
     public void emprestarLivro() {
-        if (livroDisponivel) {
-            livroDisponivel = false;
-            System.out.println("Livro emprestado!");
+        livroEmprestado = false;
+        if (livroEmprestado == false) {
+            livroEmprestado = true;
         }else{
             System.out.println("Livro indisponível.");
         }
@@ -43,16 +46,20 @@ public class Livro {
 
     // Método para devolver o livro
     public void devolverLivro() {
-        livroDisponivel = true;
-        System.out.println("Livro devolvido com sucesso!");
+        if (livroEmprestado == true){
+            livroEmprestado = false;
+            System.out.println("Livro Devolvido com Sucesso.");
+        }else{
+            System.out.println("Livro não estava emprestado");
+        }
     }
 
     // Método para verificar a disponibilidade do livro
     public void verificarDisponibilidade() {
-        if (livroDisponivel) {
-            System.out.println("Livro disponível.");
+        if (livroEmprestado == true) {
+            System.out.println("Livro emprestado");
         }else{
-            System.out.println("Livro indisponível.");
+            System.out.println("Livro disponivel.");
         }
     }
 }

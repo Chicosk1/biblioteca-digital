@@ -66,10 +66,15 @@ public class Main {
 
                     // Validação para verificar se o livro já foi emprestado ou não
                     if (livroEmprestimo != null) {
-                        membroEmprestimo.registrarEmprestimo(livroEmprestimo);
-                        System.out.println(livroEmprestimo + " foi emprestado com sucesso!");
-                    } else {
-                        System.out.println("Livro não encontrado.");
+                        if(livroEmprestimo.islivroEmprestado() == false){
+                            membroEmprestimo.registrarEmprestimo(livroEmprestimo);
+                            livroEmprestimo.emprestarLivro();
+                            System.out.println(livroEmprestimo + " foi emprestado com sucesso!");
+                        }else{
+                            System.out.println("O livro ja foi emprestado");
+                        }            
+                    }else{
+                        System.out.println("Livro não encontrado");
                     }
 
                     break;
@@ -101,13 +106,30 @@ public class Main {
                     break;
 
                 case 3:
+                    
+                    System.out.println("Escolha o autor:");
+                    System.out.println("1. " + autor1.getNomeAutor());
+                    System.out.println("2. " + autor2.getNomeAutor());
+                    int nomeAutorListar = scanner.nextInt();
+                    scanner.nextLine();
+                    if (nomeAutorListar != 1 && nomeAutorListar != 2) {
+                        System.out.println("Escolha inválida. Tente novamente.");
+                        break;
+                    }else{
+                        //Valida a escolha de Autores, se for escolhido um numero invalido o sistema sera reiniciado.
+                    Autor autorListarEscolhido  =  nomeAutorListar == 1 ? autor1 : autor2;
 
-                    System.out.println("Digite o nome do autor:");
-                    String nomeAutor = scanner.nextLine();
-
+                    
                     // Procurando os livros que um autor possui
-                    biblioteca.listarLivrosDoAutor(nomeAutor);
-
+                    biblioteca.listarLivrosDoAutor(autorListarEscolhido.getNomeAutor());
+                    }
+                    for(int i = 1; i >= 1;i--){
+                        try {
+                            Thread.sleep(1000);
+                        } catch (Exception e) {
+                            System.out.println("Erro");
+                        }
+                    }//Delay para facilitar o entendimento do print
                     break;
 
                 case 4:

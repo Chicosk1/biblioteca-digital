@@ -11,11 +11,12 @@ public class Biblioteca {
         this.livros = livros;
     }
 
-    public void listarLivrosDoAutor(String nomeAutor) {
+    public void listarLivrosDoAutor(String autorListarEscolhido) {
 
+        
         // Loop percorrendo os livros que um autor possui
         for (Livro livro : livros) {
-            if (livro.getAutorLivro().getNomeAutor().equalsIgnoreCase(nomeAutor)) {
+            if (livro.getAutorLivro().getNomeAutor().equalsIgnoreCase(autorListarEscolhido)) {
                 System.out.println(livro.getTituloLivro());
             }
         }
